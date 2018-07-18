@@ -2,10 +2,11 @@ import React from 'react';
 import {Col} from 'reactstrap';
 
 export const LetSetStatus = (props) => {
-    return <Col>
+    return <div>
         <span>{props.ledSetName}</span>
+        <span> Status: </span>
         <span>{props.ledSetStatus}</span>
-    </Col>
+    </div>
 }
 
 export default LetSetStatus
