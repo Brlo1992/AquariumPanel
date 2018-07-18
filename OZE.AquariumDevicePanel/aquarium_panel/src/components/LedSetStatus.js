@@ -1,11 +1,15 @@
 import React from 'react';
-import {Col} from 'reactstrap';
+import {Badge} from 'reactstrap';
 
 export const LetSetStatus = (props) => {
+    let status = <Badge color="danger">Off</Badge>;
+
+    if(props.ledStatus){
+        status = <Badge color="success">On</Badge>;
+    }
+
     return <div>
-        <span>{props.ledSetName}</span>
-        <span> Status: </span>
-        <span>{props.ledSetStatus}</span>
+        <h3>{status}</h3>
     </div>
 }
 
