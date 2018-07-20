@@ -10,8 +10,6 @@ class App extends Component {
         </Row>
         <Status />
         <hr />
-
-        <hr />
       </Container>
   }
 }

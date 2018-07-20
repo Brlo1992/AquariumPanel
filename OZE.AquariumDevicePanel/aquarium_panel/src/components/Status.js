@@ -1,8 +1,14 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 import LedSets from './LedSets';
+import HttpClient from '../communication/HttpClient';
+
 
 export default class Status extends React.Component {
+    turnOn = () => HttpClient.get("turnOn");
+
+    turnOff = () => HttpClient.get("turnOff");
+
     render() {
         return <Row>
             <Col>
@@ -16,8 +22,8 @@ export default class Status extends React.Component {
                 <LedSets id={3} name={"Trzeci"}/>                    
                 <br />
                 <Row>
-                    <Col><a className="btn btn-success btn-block" href="http://192.168.8.133/turnOn">Turn On</a></Col>
-                    <Col><a className="btn btn-danger btn-block" href="http://192.168.8.133/turnOff">Turn Off</a></Col>
+                    <Col><Button color="success" onClick={() => this.turnOn()} block>Turn on</Button></Col>
+                    <Col><Button color="danger" onClick={() => this.turnOff()} block>Turn off</Button></Col>
                 </Row>
             </Col>
         </Row>
