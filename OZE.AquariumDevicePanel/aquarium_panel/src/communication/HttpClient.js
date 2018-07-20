@@ -1,8 +1,16 @@
 class HttpClient {
+    baseUrl = ''
+
     get = (url) => {
-        fetch(url)  
+        let fullUrl = this.baseUrl.concat(url);
+
+        let response;
+
+        fetch(fullUrl)  
             .then(response => response.json())
-            .then(json => console.log(json));
+            .then(json => response = json);
+
+        return response;
     }
 }
 export default new HttpClient();

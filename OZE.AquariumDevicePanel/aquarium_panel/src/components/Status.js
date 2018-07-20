@@ -9,20 +9,23 @@ export default class Status extends React.Component {
         super(props);
 
         this.state = {
-            ledSets:[]
+            ledPins:[]
         }
     }
 
     getLedSets = () => {
-        this.state.ledSets.map(ledSet => <LedSets id={ledSet.id} name={ledSet.id}/>)
+        this.state.ledPins.map(ledSet => <LedSets id={ledSet.id} name={ledSet.id}/>)
     }
 
     turnOn = () => HttpClient.get("turnOn");
 
     turnOff = () => HttpClient.get("turnOff");
 
-    async componentDidMount(){
-
+    componentDidMount(){
+        let response = HttpClient.get("getLedPins");    
+        this.setState({
+            ledPins: response
+        });
     }
 
     render() {
@@ -31,12 +34,7 @@ export default class Status extends React.Component {
                 <br />
                 <hr />
                 <Row><Col><h2>Current Status</h2></Col></Row>
-                <LedSets id={1} name={"Pierwszy"}/>
-                <br />  
-                <LedSets id={2} name={"Drugi"}/>                    
-                <br />
-                <LedSets id={3} name={"Trzeci"}/>                    
-                <br />
+                {this.getLedSets()}
                 <Row>
                     <Col><Button color="success" onClick={() => this.turnOn()} block>Turn on</Button></Col>
                     <Col><Button color="danger" onClick={() => this.turnOff()} block>Turn off</Button></Col>
