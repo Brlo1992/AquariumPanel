@@ -23,6 +23,7 @@ export default class Status extends React.Component {
 
     componentDidMount(){
         let response = HttpClient.get("getLedPins");    
+        
         this.setState({
             ledPins: response
         });

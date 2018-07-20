@@ -1,16 +1,17 @@
 class HttpClient {
-    baseUrl = ''
+    baseUrl = 'https://localhost:44348/'
+
+    getFullUrl = (url) => this.baseUrl.concat(url);
 
     get = (url) => {
-        let fullUrl = this.baseUrl.concat(url);
-
-        let response;
-
-        fetch(fullUrl)  
+        fetch(this.getFullUrl(url))  
             .then(response => response.json())
-            .then(json => response = json);
+            .then(json => console.log(json));
+    }
 
-        return response;
+    getAsync = async (url) => {
+        let response = await fetch(this.getFullUrl());
+        return await response.json();
     }
 }
 export default new HttpClient();
