@@ -1,8 +1,14 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
+import HttpClient from '../communication/HttpClient';
 import LedSetStatus from './LedSetStatus';
 
 export default class LedSet extends React.Component {
+    
+    turnLedSetOn = () => HttpClient.get("turnOn/".concat(this.props.id));
+
+    turnLedSetOff = () => HttpClient.get("turnOff/".concat(this.props.id));
+    
     render() {
         return <Row>
             <Col>
@@ -14,12 +20,10 @@ export default class LedSet extends React.Component {
                         <LedSetStatus ledSetId={this.props.id} ledStatus={true} />
                     </Col>
                     <Col>
-                        <a className="btn btn-success btn-block"
-                            href={"http://192.168.8.133/turnOn/".concat(this.props.id)}>Turn On</a>
+                        <Button color="success" block onClick={() => this.turnLedSetOn()}>Turn on</Button>
                     </Col>
                     <Col>
-                        <a className="btn btn-danger btn-block"
-                            href={"http://192.168.8.133/turnOff/".concat(this.props.id)}>Turn Off</a>
+                        <Button color="danger" block onClick={() => this.turnLedSetOff()}>Turn off</Button>
                     </Col>
                 </Row>
             </Col>
