@@ -21,9 +21,9 @@ export default class Status extends React.Component {
 
     turnOff = () => HttpClient.get("turnOff");
 
-    componentDidMount(){
-        let response = HttpClient.get("getLedPins");    
-        
+    async componentDidMount(){
+        let response = await HttpClient.getAsync("getLedPins");    
+
         this.setState({
             ledPins: response
         });

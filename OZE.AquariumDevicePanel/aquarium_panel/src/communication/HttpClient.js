@@ -10,8 +10,11 @@ class HttpClient {
     }
 
     getAsync = async (url) => {
-        let response = await fetch(this.getFullUrl());
-        return await response.json();
+        let response = await fetch(this.getFullUrl(url));
+        let json = await response.json();
+        
+        console.log(json);
+        return json;
     }
 }
 export default new HttpClient();
