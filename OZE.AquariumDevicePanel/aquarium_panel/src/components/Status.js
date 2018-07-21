@@ -14,7 +14,7 @@ export default class Status extends React.Component {
     }
 
     getLedSets = () => {
-        return this.state.ledPins.map(ledSet => <LedSets id={ledSet} name={ledSet}/>)
+        return this.state.ledPins.map(ledSet => <LedSets id={ledSet} name={ledSet} key={ledSet}/>)
     }
 
     turnOn = () => HttpClient.get("aquarium/turnOn");

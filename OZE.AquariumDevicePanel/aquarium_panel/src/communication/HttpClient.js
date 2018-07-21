@@ -6,15 +6,17 @@ class HttpClient {
     get = (url) => {
         fetch(this.getFullUrl(url))  
             .then(response => response.json())
-            .then(json => console.log(json));
+            .catch(error => console.log(error))
     }
 
     getAsync = async (url) => {
-        let response = await fetch(this.getFullUrl(url));
-        let json = await response.json();
+        let result = await fetch(this.getFullUrl(url))
+                                .then(response => { return response.json()})
+                                .catch(error => console.log(error));
         
-        console.log(json);
-        return json;
+        console.log(result);
+
+        return result;
     }
 }
 export default new HttpClient();
