@@ -3,15 +3,27 @@ class HttpClient {
 
     getFullUrl = (url) => this.baseUrl.concat(url);
 
+    handleResponse = (response) => {
+        if(response.status === 200){
+            return response.json();
+        }
+        return Promise.reject(response);
+    }
+
     get = (url) => {
         fetch(this.getFullUrl(url))  
-            .then(response => response.json())
+            .then(this.handleResponse)
+            .then(data => console.log(data))
             .catch(error => console.log(error))
     }
 
     getAsync = async (url) => {
         let result = await fetch(this.getFullUrl(url))
-                                .then(response => { return response.json()})
+                                .then(this.handleResponse)
+                                .then(data => {
+                                    console.log(data);
+                                    return data;
+                                })
                                 .catch(error => console.log(error));
         
         console.log(result);

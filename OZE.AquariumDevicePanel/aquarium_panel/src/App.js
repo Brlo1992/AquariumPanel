@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {Container, Row, Col} from 'reactstrap';
 import Status from './components/Status';
+
 class App extends Component {
   render() {
     return <Container>
