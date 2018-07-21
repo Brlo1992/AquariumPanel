@@ -5,9 +5,9 @@ import LedSetStatus from './LedSetStatus';
 
 export default class LedSet extends React.Component {
     
-    turnLedSetOn = () => HttpClient.get("turnOn/".concat(this.props.id));
+    turnLedSetOn = () => HttpClient.get("aquarium/turnOn/".concat(this.props.id));
 
-    turnLedSetOff = () => HttpClient.get("turnOff/".concat(this.props.id));
+    turnLedSetOff = () => HttpClient.get("aquarium/turnOff/".concat(this.props.id));
     
     render() {
         return <Row>

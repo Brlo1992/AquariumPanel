@@ -14,12 +14,12 @@ export default class Status extends React.Component {
     }
 
     getLedSets = () => {
-        this.state.ledPins.map(ledSet => <LedSets id={ledSet.id} name={ledSet.id}/>)
+        return this.state.ledPins.map(ledSet => <LedSets id={ledSet} name={ledSet}/>)
     }
 
-    turnOn = () => HttpClient.get("turnOn");
+    turnOn = () => HttpClient.get("aquarium/turnOn");
 
-    turnOff = () => HttpClient.get("turnOff");
+    turnOff = () => HttpClient.get("aquarium/turnOff");
 
     async componentDidMount(){
         let response = await HttpClient.getAsync("aquarium/getLedPins");    
@@ -36,6 +36,7 @@ export default class Status extends React.Component {
                 <hr />
                 <Row><Col><h2>Current Status</h2></Col></Row>
                 {this.getLedSets()}
+                <hr />  
                 <Row>
                     <Col><Button color="success" onClick={() => this.turnOn()} block>Turn on</Button></Col>
                     <Col><Button color="danger" onClick={() => this.turnOff()} block>Turn off</Button></Col>
