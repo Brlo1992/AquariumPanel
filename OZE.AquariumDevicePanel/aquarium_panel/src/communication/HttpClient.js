@@ -1,5 +1,5 @@
 class HttpClient {
-    baseUrl = 'https://localhost:44348/'
+    baseUrl = 'http://localhost:41134/api/'
 
     getFullUrl = (url) => this.baseUrl.concat(url);
 
