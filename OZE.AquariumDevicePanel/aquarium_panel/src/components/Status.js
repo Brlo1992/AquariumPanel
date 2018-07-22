@@ -35,6 +35,7 @@ export default class Status extends React.Component {
                 <br />
                 <hr />
                 <Row><Col><h2>Current Status</h2></Col></Row>
+                <br />
                 {this.getLedSets()}
                 <hr />  
                 <Row>
