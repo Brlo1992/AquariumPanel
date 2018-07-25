@@ -13,7 +13,7 @@ export default class LedSet extends React.Component {
         return <Row>
             <Col><h5>{this.props.name}</h5></Col>
             <Col>
-                <LedSetStatus ledSetId={this.props.id} ledStatus={true} />
+                <LedSetStatus ledSetId={this.props.id} ledStatus={this.props.enabled} />
             </Col>
             <Col>
                 <Button color="success" block onClick={() => this.turnLedSetOn()}>Turn on</Button>
