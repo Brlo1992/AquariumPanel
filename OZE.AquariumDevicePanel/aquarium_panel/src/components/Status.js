@@ -18,18 +18,18 @@ export default class Status extends React.Component {
     }
 
     turnOn = () => {
-        let response = await HttpClient.getAsync("aquarium/turnOn");
+        let response = HttpClient.get("aquarium/turnOn");
 
-        if (response.isValid) {
+        if (response && response.isValid) {
             this.state.ledPins.find(x => x.id === response.content.id).status = response.content.status;
             this.forceUpdate();
         }
     }
 
     turnOff = () => {
-        let response = await HttpClient.getAsync("aquarium/turnOff");
+        let response = HttpClient.get("aquarium/turnOff");
         
-        if (response.isValid) {
+        if (response && response.isValid) {
             this.state.ledPins.find(x => x.id === response.content.id).status = response.content.status;
             this.forceUpdate();
         }
@@ -38,7 +38,7 @@ export default class Status extends React.Component {
     async componentDidMount() {
         let response = await HttpClient.getAsync("aquarium/getLedPins");
 
-        if (response.isValid) {
+        if (response && response.isValid) {
             this.setState({
                 ledPins: response.content
             });
