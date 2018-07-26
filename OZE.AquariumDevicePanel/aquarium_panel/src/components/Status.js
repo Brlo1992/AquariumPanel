@@ -14,14 +14,14 @@ export default class Status extends React.Component {
     }
 
     getLedSets = () => {
-        return this.state.ledPins.map(ledSet => <LedSets id={ledSet.id} name={ledSet.id} key={ledSet.id} status={ledSet.status}/>)
+        return this.state.ledPins.map(ledPin => <LedSets id={ledPin.id} name={ledPin.id} key={ledPin.id} status={ledPin.status}/>)
     }
 
     turnOn = () => {
         let response = HttpClient.get("aquarium/turnOn");
 
         if (response && response.isValid) {
-            this.state.ledPins.find(x => x.id === response.content.id).status = response.content.status;
+            this.state.ledPins.forEach(ledPin => ledPin.status = "on");
             this.forceUpdate();
         }
     }
@@ -30,7 +30,7 @@ export default class Status extends React.Component {
         let response = HttpClient.get("aquarium/turnOff");
         
         if (response && response.isValid) {
-            this.state.ledPins.find(x => x.id === response.content.id).status = response.content.status;
+            this.state.ledPins.forEach(ledPin => ledPin.status = "off");
             this.forceUpdate();
         }
     }
