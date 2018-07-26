@@ -11,11 +11,14 @@ class HttpClient {
     }
 
     get = (url) => {
-        fetch(this.getFullUrl(url))  
-            .then(this.handleResponse)
-            .then(data => console.log(data))
-            .catch(error => console.log(error))
-    }
+        return fetch(this.getFullUrl(url))  
+            .then(response => response.json())
+            .then(data => { 
+                console.log(data);
+                return data;
+            })
+            .catch(error => console.log(error));
+   }
 
     getAsync = async (url) => {
         let result = await fetch(this.getFullUrl(url))
