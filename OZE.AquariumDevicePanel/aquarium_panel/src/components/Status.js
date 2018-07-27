@@ -17,23 +17,20 @@ export default class Status extends React.Component {
         return this.state.ledPins.map(ledPin => <LedSets id={ledPin.id} name={ledPin.id} key={ledPin.id} status={ledPin.status}/>)
     }
 
-    turnOn = () => {
-        let response = HttpClient.get("aquarium/turnOn");
-
-        if (response && response.isValid) {
-            this.state.ledPins.forEach(ledPin => ledPin.status = "on");
-            this.forceUpdate();
-        }
-    }
+    turnOn = () => HttpClient.get("aquarium/turnOn", this.turnOnLeds);
 
     turnOff = () => HttpClient.get("aquarium/turnOff", this.turnOffLeds);
 
-    turnOffLeds = (response) => {
+    changeLedStatus = (response, status) => {
         if (response && response.isValid) {
-            this.state.ledPins.forEach(ledPin => ledPin.status = "off");
+            this.state.ledPins.forEach(ledPin => ledPin.status = status);
             this.forceUpdate();
         }
     }
+
+    turnOnLeds = (response) => this.changeLedStatus(response, "on");
+
+    turnOffLeds = (response) => this.changeLedStatus(response, "off");
 
     async componentDidMount() {
         let response = await HttpClient.getAsync("aquarium/getLedPins");
