@@ -5,15 +5,35 @@ import LedSetStatus from './LedSetStatus';
 
 export default class LedSet extends React.Component {
 
-    turnLedSetOn = () => HttpClient.get("aquarium/turnOnLedSet/".concat(this.props.id));
+    constructor(props){
+        super(props);
 
-    turnLedSetOff = () => HttpClient.get("aquarium/turnOffLedSet/".concat(this.props.id));
+        this.state = {
+            id: this.props.id,
+            status: this.props.status
+        };
+    }
+
+    changeSingleLedStatus = (response, status) => {
+        if (response && response.isValid) {
+            this.state.ledPins.find(ledPin => ledPin.id === this.state.id).status = status;
+            this.forceUpdate();
+        }
+    }
+
+    turnOnSingleLed = (response, id) => this.changeSingleLedStatus(response, "on");
+
+    turnOffSingleLed = (response, id) => this.changeSingleLedStatus(response, "off");
+
+    turnLedSetOn = () => HttpClient.get("aquarium/turnOnLedSet/".concat(this.props.id), this.turnOnSingleLed);
+
+    turnLedSetOff = () => HttpClient.get("aquarium/turnOffLedSet/".concat(this.props.id), this.turnOffSingleLed);
 
     render() {
         return <Row>
             <Col><h5>{this.props.name}</h5></Col>
             <Col>
-                <LedSetStatus ledSetId={this.props.id} ledStatus={this.props.status} />
+                <LedSetStatus ledSetId={this.state.id} ledStatus={this.state.status} />
             </Col>
             <Col>
                 <Button color="success" block onClick={() => this.turnLedSetOn()}>Turn on</Button>
