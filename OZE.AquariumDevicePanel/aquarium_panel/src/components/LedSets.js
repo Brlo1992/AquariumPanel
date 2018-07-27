@@ -7,20 +7,18 @@ export default class LedSet extends React.Component {
     
     constructor(props){
         super(props);
-        
+
         this.state = {
-            id: this.props.id,
             status: this.props.status,
-            name: this.props.name
         }
     }
 
-    componentDidMount(){
-        this.setState({
-            id: this.props.id,
-            status: this.props.status,
-            name: this.props.name
-        });
+    componentWillReceiveProps(nextProps) {
+        if (this.state.status !== nextProps.status) {
+            this.setState({
+                status: nextProps.status
+            });    
+        }
     }
 
     changeSingleLedStatus = (response, status) => {
@@ -31,19 +29,19 @@ export default class LedSet extends React.Component {
         }
     }
 
-    turnOnSingleLed = (response, id) => this.changeSingleLedStatus(response, "on");
+    turnOnSingleLed = (response) => this.changeSingleLedStatus(response, "on");
 
-    turnOffSingleLed = (response, id) => this.changeSingleLedStatus(response, "off");
+    turnOffSingleLed = (response) => this.changeSingleLedStatus(response, "off");
 
-    turnLedSetOn = () => HttpClient.get("aquarium/turnOnLedSet/".concat(this.state.id), this.turnOnSingleLed);
+    turnLedSetOn = () => HttpClient.get("aquarium/turnOnLedSet/".concat(this.props.id), this.turnOnSingleLed);
 
-    turnLedSetOff = () => HttpClient.get("aquarium/turnOffLedSet/".concat(this.state.id), this.turnOffSingleLed);
+    turnLedSetOff = () => HttpClient.get("aquarium/turnOffLedSet/".concat(this.props.id), this.turnOffSingleLed);
 
     render() {
         return <Row>
-            <Col><h5>{this.state.name}</h5></Col>
+            <Col><h5>{this.props.name}</h5></Col>
             <Col>
-                <LedSetStatus ledSetId={this.state.id} ledStatus={this.state.status} />
+                <LedSetStatus ledSetId={this.props.id} ledStatus={this.state.status} />
             </Col>
             <Col>
                 <Button color="success" block onClick={() => this.turnLedSetOn()}>Turn on</Button>
