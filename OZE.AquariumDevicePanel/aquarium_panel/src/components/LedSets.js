@@ -16,8 +16,9 @@ export default class LedSet extends React.Component {
 
     changeSingleLedStatus = (response, status) => {
         if (response && response.isValid) {
-            this.state.ledPins.find(ledPin => ledPin.id === this.state.id).status = status;
-            this.forceUpdate();
+            this.setState({
+                status: status
+            });
         }
     }
 
