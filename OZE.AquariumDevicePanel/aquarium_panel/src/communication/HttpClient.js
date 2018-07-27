@@ -10,12 +10,12 @@ class HttpClient {
         return Promise.reject(response);
     }
 
-    get = (url) => {
+    get = (url, func) => {
         return fetch(this.getFullUrl(url))  
             .then(response => response.json())
             .then(data => { 
                 console.log(data);
-                return data;
+                func(data);
             })
             .catch(error => console.log(error));
    }

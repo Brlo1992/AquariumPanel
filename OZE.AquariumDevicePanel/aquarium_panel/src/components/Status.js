@@ -26,9 +26,9 @@ export default class Status extends React.Component {
         }
     }
 
-    turnOff = () => {
-        let response = HttpClient.get("aquarium/turnOff");
-        
+    turnOff = () => HttpClient.get("aquarium/turnOff", this.turnOffLeds);
+
+    turnOffLeds = (response) => {
         if (response && response.isValid) {
             this.state.ledPins.forEach(ledPin => ledPin.status = "off");
             this.forceUpdate();
