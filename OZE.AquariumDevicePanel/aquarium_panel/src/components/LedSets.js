@@ -4,14 +4,23 @@ import HttpClient from '../communication/HttpClient';
 import LedSetStatus from './LedSetStatus';
 
 export default class LedSet extends React.Component {
-
+    
     constructor(props){
         super(props);
-
+        
         this.state = {
             id: this.props.id,
-            status: this.props.status
-        };
+            status: this.props.status,
+            name: this.props.name
+        }
+    }
+
+    componentDidMount(){
+        this.setState({
+            id: this.props.id,
+            status: this.props.status,
+            name: this.props.name
+        });
     }
 
     changeSingleLedStatus = (response, status) => {
@@ -26,13 +35,13 @@ export default class LedSet extends React.Component {
 
     turnOffSingleLed = (response, id) => this.changeSingleLedStatus(response, "off");
 
-    turnLedSetOn = () => HttpClient.get("aquarium/turnOnLedSet/".concat(this.props.id), this.turnOnSingleLed);
+    turnLedSetOn = () => HttpClient.get("aquarium/turnOnLedSet/".concat(this.state.id), this.turnOnSingleLed);
 
-    turnLedSetOff = () => HttpClient.get("aquarium/turnOffLedSet/".concat(this.props.id), this.turnOffSingleLed);
+    turnLedSetOff = () => HttpClient.get("aquarium/turnOffLedSet/".concat(this.state.id), this.turnOffSingleLed);
 
     render() {
         return <Row>
-            <Col><h5>{this.props.name}</h5></Col>
+            <Col><h5>{this.state.name}</h5></Col>
             <Col>
                 <LedSetStatus ledSetId={this.state.id} ledStatus={this.state.status} />
             </Col>
