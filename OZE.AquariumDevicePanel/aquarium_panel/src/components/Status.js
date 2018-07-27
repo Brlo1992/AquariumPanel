@@ -50,6 +50,10 @@ export default class Status extends React.Component {
                 {this.getLedSets()}
                 <hr />
                 <Row>
+                    <Col><h2>Turn on/off all leds</h2></Col>
+                </Row>
+                <br />
+                <Row>
                     <Col><Button color="success" onClick={() => this.turnOn()} block>Turn on</Button></Col>
                     <Col><Button color="danger" onClick={() => this.turnOff()} block>Turn off</Button></Col>
                 </Row>
