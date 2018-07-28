@@ -13,7 +13,7 @@ export default class ScheduledTasks extends React.Component {
                     <Col><h5>Status</h5></Col>
                     <Col><h5>Execution time</h5></Col>
                     <Col><h5>Last execution</h5></Col>
-                    <Col><h5>Possible actions</h5></Col>
+                    <Col md="3"><h5>Possible actions</h5></Col>
                 </Row>
                 <hr />
                 <Row>
@@ -21,8 +21,9 @@ export default class ScheduledTasks extends React.Component {
                     <Col>On</Col>
                     <Col>09:15:01</Col>
                     <Col>12/12/2017 09:15:01</Col>
-                    <Col><Button color="danger" block >Remove</Button></Col>
-                    <Col><Button color="primary" block >Run</Button></Col>
+                    <Col md="1"><Button  color="danger" block>D</Button></Col>
+                    <Col md="1"><Button  color="primary" block>R</Button></Col>
+                    <Col md="1"><Button  color="success" block>E</Button></Col>
                 </Row>
                 <br />
                 <Row>
@@ -30,8 +31,9 @@ export default class ScheduledTasks extends React.Component {
                     <Col>On</Col>
                     <Col>09:15:01</Col>
                     <Col>12/12/2017 09:15:01</Col>
-                    <Col><Button color="danger" block>Remove</Button></Col>
-                    <Col><Button color="primary" block>Run</Button></Col>
+                    <Col md="1"><Button color="danger" block>D</Button></Col>
+                    <Col md="1"><Button color="primary" block>R</Button></Col>
+                    <Col md="1"><Button color="success" block>E</Button></Col>
                 </Row>
             </Col>
         </Row>
