@@ -18,6 +18,7 @@ export default class ScheduledTaskRow extends React.Component {
 
     render() {
         return <Row>
+            <Col><p>{this.props.id}</p></Col>
             <Col><p>{this.props.name}</p></Col>
             <Col><p>{this.props.status}</p></Col>
             <Col><p>{this.props.timeExecution}</p></Col>

@@ -4,13 +4,27 @@ import ScheduledTaskRow from './ScheduledTaskRow'
 
 
 export default class ScheduledTasks extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
-        this.state ={
-            taskJobs : []
+        this.state = {
+            taskJobs: []
         };
     }
+
+    getScheduledTasks = () => {
+        let scheduledTasks = this.state.taskJobs.map(taskJob => <ScheduledTaskRow />)
+
+        return <Row>
+            <Col>
+                <hr />
+                <br />
+                {scheduledTasks}
+                <br />
+            </Col>
+        </Row>
+    }
+
     render() {
         return <Row>
             <Col>
@@ -23,12 +37,7 @@ export default class ScheduledTasks extends React.Component {
                     <Col><h4>Last execution</h4></Col>
                     <Col md="3"><h4>Possible actions</h4></Col>
                 </Row>
-                <hr />
-                <br />
-                    <ScheduledTaskRow />
-                    <ScheduledTaskRow />
-                    <ScheduledTaskRow />
-                <br />
+
             </Col>
         </Row>
     }
