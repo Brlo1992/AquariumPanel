@@ -13,7 +13,7 @@ export default class ScheduledTasks extends React.Component {
     }
 
     getScheduledTasks = () => {
-        let scheduledTasks = this.state.taskJobs.map(taskJob => <ScheduledTaskRow />)
+        let scheduledTasks = this.state.taskJobs.map(taskJob => <ScheduledTaskRow taskJob={taskJob} />)
 
         return <Row>
             <Col>
