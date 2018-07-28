@@ -1,5 +1,6 @@
 import React from 'react'
 import { Row, Col, Button } from 'reactstrap';
+import * as Fa from "react-icons/lib/fa";
 
 
 export default class ScheduledTasks extends React.Component {
@@ -21,9 +22,9 @@ export default class ScheduledTasks extends React.Component {
                     <Col>On</Col>
                     <Col>09:15:01</Col>
                     <Col>12/12/2017 09:15:01</Col>
-                    <Col md="1"><Button  color="danger" block>D</Button></Col>
-                    <Col md="1"><Button  color="primary" block>R</Button></Col>
-                    <Col md="1"><Button  color="success" block>E</Button></Col>
+                    <Col md="1"><Button  color="success" block><Fa.FaEdit/></Button></Col>
+                    <Col md="1"><Button  color="primary" block><Fa.FaBolt/></Button></Col>
+                    <Col md="1"><Button  color="danger" block><Fa.FaTrash/></Button></Col>
                 </Row>
                 <br />
                 <Row>
@@ -31,10 +32,11 @@ export default class ScheduledTasks extends React.Component {
                     <Col>On</Col>
                     <Col>09:15:01</Col>
                     <Col>12/12/2017 09:15:01</Col>
-                    <Col md="1"><Button color="danger" block>D</Button></Col>
-                    <Col md="1"><Button color="primary" block>R</Button></Col>
-                    <Col md="1"><Button color="success" block>E</Button></Col>
+                    <Col md="1"><Button  color="success" block><Fa.FaEdit/></Button></Col>
+                    <Col md="1"><Button  color="primary" block><Fa.FaBolt/></Button></Col>
+                    <Col md="1"><Button  color="danger" block><Fa.FaTrash/></Button></Col>
                 </Row>
+                <br />
             </Col>
         </Row>
     }
