@@ -1,19 +1,19 @@
 import React from 'react'
 import { Row, Col, Button } from 'reactstrap';
 import ScheduledTaskRow from './ScheduledTaskRow'
-
+import HttpClient from '../communication/HttpClient'
 
 export default class ScheduledTasks extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            taskJobs: []
+            scheduledTasks: []
         };
     }
 
     getScheduledTasks = () => {
-        let scheduledTasks = this.state.taskJobs.map(taskJob => <ScheduledTaskRow taskJob={taskJob} />)
+        let scheduledTasks = this.state.scheduledTasks.map(task => <ScheduledTaskRow taskJob={task} />)
 
         return <Row>
             <Col>
@@ -23,6 +23,16 @@ export default class ScheduledTasks extends React.Component {
                 <br />
             </Col>
         </Row>
+    }
+
+    async componentDidMount(){
+        let response = await HttpClient.getAsync("scheduledTask/getAll")
+
+        if (response && response.isValid) {
+            this.setState({
+                scheduledTasks: response.content
+            });
+        }
     }
 
     render() {
@@ -37,7 +47,7 @@ export default class ScheduledTasks extends React.Component {
                     <Col><h4>Last execution</h4></Col>
                     <Col md="3"><h4>Possible actions</h4></Col>
                 </Row>
-
+                {this.getScheduledTasks()}
             </Col>
         </Row>
     }
