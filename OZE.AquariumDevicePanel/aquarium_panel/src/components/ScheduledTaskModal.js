@@ -5,11 +5,10 @@ export default class ScheduledTaskModal extends React.Component {
   render() {
     return (
       <div>
-        <Modal isOpen={this.props.modal} toggle={this.props.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+        <Modal isOpen={this.props.modal} toggle={this.props.toggle}>
+          <ModalHeader toggle={this.toggle}>New Scheduled Task</ModalHeader>
           <ModalBody>
               I will add new scheduled tasks
-              
           </ModalBody>
           <ModalFooter>
             <Button color="success" onClick={this.addNewScheduledTask}>Add</Button>{' '}

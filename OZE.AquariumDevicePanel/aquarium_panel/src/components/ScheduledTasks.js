@@ -9,8 +9,15 @@ export default class ScheduledTasks extends React.Component {
         super(props);
 
         this.state = {
-            scheduledTasks: []
+            scheduledTasks: [],
+            modal: false
         };
+    }
+
+    toggle = () => {
+        this.setState({
+            modal: !this.state.modal
+        });
     }
 
     getScheduledTasks = () => {
@@ -26,7 +33,7 @@ export default class ScheduledTasks extends React.Component {
         </Row>
     }
 
-    async componentDidMount(){
+    async componentDidMount() {
         let response = await HttpClient.getAsync("scheduledTask/getAll")
 
         if (response && response.isValid) {
@@ -49,7 +56,8 @@ export default class ScheduledTasks extends React.Component {
                     <Col md="3"><h4>Possible actions</h4></Col>
                 </Row>
                 {this.getScheduledTasks()}
-                <Button color="success" onClick={this.toggle}>Add new scheduled task</Button>
+                <Button color="success" onClick={this.toggle} s>Add new scheduled task</Button>
+                <ScheduledTaskModal modal={this.state.modal} toggle={this.toggle}/>
             </Col>
         </Row>
     }
