@@ -1,7 +1,8 @@
 import React from 'react'
 import { Row, Col, Button } from 'reactstrap';
-import ScheduledTaskRow from './ScheduledTaskRow'
-import HttpClient from '../communication/HttpClient'
+import ScheduledTaskRow from './ScheduledTaskRow';
+import HttpClient from '../communication/HttpClient';
+import ScheduledTaskModal from './ScheduledTaskModal';
 
 export default class ScheduledTasks extends React.Component {
     constructor(props) {
@@ -48,6 +49,7 @@ export default class ScheduledTasks extends React.Component {
                     <Col md="3"><h4>Possible actions</h4></Col>
                 </Row>
                 {this.getScheduledTasks()}
+                <Button color="success" onClick={this.toggle}>Add new scheduled task</Button>
             </Col>
         </Row>
     }
