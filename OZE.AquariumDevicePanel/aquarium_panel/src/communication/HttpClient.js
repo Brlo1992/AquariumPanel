@@ -34,14 +34,22 @@ class HttpClient {
         return result;
     }
 
-    post = (url, data, func) =>{
-        return fetch(this.getFullUrl(url))
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            func(data);
-        })
-        .catch(error => console.log(error));
+    post = (url, data, func) => {
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        fetch(this.getFullUrl(url), options)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                func(data);
+            })
+            .catch(error => console.log(error));
     }
 }
 export default new HttpClient();
