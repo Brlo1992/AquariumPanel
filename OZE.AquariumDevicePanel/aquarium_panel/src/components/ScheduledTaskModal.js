@@ -3,6 +3,16 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, La
 import HttpClient from '../communication/HttpClient';
 
 export default class ScheduledTaskModal extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            name: "",
+            urlAction: "",
+            status: "",
+            executionTime: ""
+        }
+    }
     afterSubmit = () => {
 
     }
