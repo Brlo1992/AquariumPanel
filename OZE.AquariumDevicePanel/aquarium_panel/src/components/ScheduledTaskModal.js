@@ -35,22 +35,22 @@ export default class ScheduledTaskModal extends React.Component {
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
                                 <Label>Name</Label>
-                                <Input type="text" name="name" id="name" placeholder="Scheduled task name" />
+                                <Input type="text" name="name" id="name" value={this.state.name} placeholder="Scheduled task name" />
                             </FormGroup>
                             <FormGroup>
                                 <Label>Url action</Label>
-                                <Input type="url" name="urlAction" id="urlAction" placeholder="Scheduled task url action" />
+                                <Input type="url" name="urlAction" id="urlAction" value={this.state.urlAction} placeholder="Scheduled task url action" />
                             </FormGroup>
                             <FormGroup>
                                 <Label>Status</Label>
-                                <Input type="select" name="status" id="status" placeholder="Scheduled task status">
+                                <Input type="select" name="status" id="status" value={this.state.status} placeholder="Scheduled task status">
                                     <option>ON</option>
                                     <option>OFF</option>
                                 </Input>
                             </FormGroup>
                             <FormGroup>
                                 <Label>Execution time</Label>
-                                <Input type="time" name="executionTime" id="executionTime" placeholder="Scheduled task execution time" />
+                                <Input type="time" name="executionTime" id="executionTime" value={this.state.executionTime} placeholder="Scheduled task execution time" />
                             </FormGroup>
                         </Form>
                     </ModalBody>
