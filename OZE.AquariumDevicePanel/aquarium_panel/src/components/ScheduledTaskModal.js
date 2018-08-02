@@ -30,15 +30,19 @@ export default class ScheduledTaskModal extends React.Component {
         this.state({urlAction: event.target.value})
     }
 
-    afterSubmit = () => {
- 
+    afterSubmit = (response) => {
+        
     }
 
     handleForm = () => {
         let url = "";
+        
         let data = {
-
-        }
+            name: this.state.name,
+            status: this.state.status,
+            executionTime: this.state.executionTime,
+            urlAction: this.state.urlAction
+        };
 
         HttpClient.Post(url, data, this.afterSubmit);
     }
