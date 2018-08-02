@@ -44,7 +44,7 @@ export default class ScheduledTaskModal extends React.Component {
             urlAction: this.state.urlAction
         };
 
-        HttpClient.Post(url, data, this.afterSubmit);
+        HttpClient.post(url, data, this.afterSubmit);
     }
 
     render() {
@@ -53,7 +53,7 @@ export default class ScheduledTaskModal extends React.Component {
                 <Modal isOpen={this.props.modal} toggle={this.props.toggle}>
                     <ModalHeader toggle={this.toggle}>New Scheduled Task</ModalHeader>
                     <ModalBody>
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form>
                             <FormGroup>
                                 <Label>Name</Label>
                                 <Input onChange={this.handleChangeName} type="text" name="name" id="name" value={this.state.name} placeholder="Scheduled task name" />
@@ -76,7 +76,7 @@ export default class ScheduledTaskModal extends React.Component {
                         </Form>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="success" onClick={this.addNewScheduledTask}>Add</Button>
+                        <Button color="success" onClick={this.handleForm}>Add</Button>
                         <Button color="danger" onClick={this.props.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
