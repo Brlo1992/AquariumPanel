@@ -1,14 +1,28 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input,  } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, } from 'reactstrap';
+import HttpClient from '../communication/HttpClient';
 
 export default class ScheduledTaskModal extends React.Component {
+    afterSubmit = () => {
+
+    }
+
+    handleForm = () => {
+        let url = "";
+        let data = {
+
+        }
+
+        HttpClient.Post(url, data, this.afterSubmit);
+    }
+
     render() {
         return (
             <div>
                 <Modal isOpen={this.props.modal} toggle={this.props.toggle}>
                     <ModalHeader toggle={this.toggle}>New Scheduled Task</ModalHeader>
                     <ModalBody>
-                        <Form>
+                        <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
                                 <Label>Name</Label>
                                 <Input type="text" name="name" id="name" placeholder="Scheduled task name" />
