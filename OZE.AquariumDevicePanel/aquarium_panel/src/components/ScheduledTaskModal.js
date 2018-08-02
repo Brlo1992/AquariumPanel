@@ -13,8 +13,25 @@ export default class ScheduledTaskModal extends React.Component {
             executionTime: ""
         }
     }
-    afterSubmit = () => {
 
+    handleChangeExecutionTime = (event) => {
+        this.state({executionTime: event.target.value})
+    }
+
+    handleChangeStatus = (event) => {
+        this.state({status: event.target.value})
+    }
+
+    handleChangeName= (event) => {
+        this.state({name: event.target.value})
+    }
+
+    handleChangeUrlAction= (event) => {
+        this.state({urlAction: event.target.value})
+    }
+
+    afterSubmit = () => {
+ 
     }
 
     handleForm = () => {
@@ -50,7 +67,7 @@ export default class ScheduledTaskModal extends React.Component {
                             </FormGroup>
                             <FormGroup>
                                 <Label>Execution time</Label>
-                                <Input type="time" name="executionTime" id="executionTime" value={this.state.executionTime} placeholder="Scheduled task execution time" />
+                                <Input onChange={this.hanldeChangeExecutionTime} type="time" name="executionTime" id="executionTime" value={this.state.executionTime} placeholder="Scheduled task execution time" />
                             </FormGroup>
                         </Form>
                     </ModalBody>
