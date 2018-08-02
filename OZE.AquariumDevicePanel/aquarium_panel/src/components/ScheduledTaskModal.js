@@ -15,19 +15,19 @@ export default class ScheduledTaskModal extends React.Component {
     }
 
     handleChangeExecutionTime = (event) => {
-        this.state({executionTime: event.target.value})
+        this.setState({executionTime: event.target.value})
     }
 
     handleChangeStatus = (event) => {
-        this.state({status: event.target.value})
+        this.setState({status: event.target.value})
     }
 
     handleChangeName= (event) => {
-        this.state({name: event.target.value})
+        this.setState({name: event.target.value})
     }
 
     handleChangeUrlAction= (event) => {
-        this.state({urlAction: event.target.value})
+        this.setState({urlAction: event.target.value})
     }
 
     afterSubmit = (response) => {
