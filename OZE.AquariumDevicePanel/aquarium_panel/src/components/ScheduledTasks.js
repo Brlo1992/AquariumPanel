@@ -21,7 +21,7 @@ export default class ScheduledTasks extends React.Component {
     }
 
     rerenderTasks = () => {
-        forceUpdate();
+        this.forceUpdate();
     }
 
     getScheduledTasks = () => {
