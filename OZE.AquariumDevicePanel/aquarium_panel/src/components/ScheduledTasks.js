@@ -20,8 +20,10 @@ export default class ScheduledTasks extends React.Component {
         });
     }
 
-    rerenderTasks = () => {
-        this.forceUpdate();
+    updateTasks = (tasks) => {
+        this.setState({
+            scheduledTasks: tasks
+        });
     }
 
     getScheduledTasks = () => {
@@ -61,7 +63,7 @@ export default class ScheduledTasks extends React.Component {
                 </Row>
                 {this.getScheduledTasks()}
                 <Button color="success" onClick={this.toggle} s>Add new scheduled task</Button>
-                <ScheduledTaskModal modal={this.state.modal} toggle={this.toggle} rerenderTasks={this.rerenderTasks}/>
+                <ScheduledTaskModal modal={this.state.modal} toggle={this.toggle} updateTasks={this.updateTasks} />
             </Col>
         </Row>
     }

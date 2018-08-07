@@ -33,7 +33,7 @@ export default class ScheduledTaskModal extends React.Component {
     afterSubmit = (response) => {
         if(response.isValid){
             this.props.toggle();
-            this.props.rerenderTasks();
+            this.props.updateTasks(response.content);
         }
     }
 
