@@ -26,6 +26,12 @@ export default class ScheduledTasks extends React.Component {
         });
     }
 
+    validateResponseAndGetTasks = (response) => {
+        if (response && response.isValid) {
+            this.updateTasks(response.content);
+        }
+    }
+
     getScheduledTasks = () => {
         let scheduledTasks = this.state.scheduledTasks.map(task => <ScheduledTaskRow taskJob={task} />)
 
