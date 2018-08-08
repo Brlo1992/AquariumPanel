@@ -6,7 +6,7 @@ import HttpClient from "../communication/HttpClient";
 export default class ScheduledTaskRow extends React.Component {
 
     remove = () => {
-        HttpClient.get("scheduledTask/remove?taskId=".concat(this.props.id), this.props.updateTasks)
+        HttpClient.get("scheduledTask/remove?taskId=".concat(this.props.taskJob.id), this.props.updateTasks)
     }
 
     run = () => {
@@ -15,7 +15,6 @@ export default class ScheduledTaskRow extends React.Component {
 
     render() {
         return <Row>
-            {/* <Col><p>{this.props.taskJob.id}</p></Col> */}
             <Col><p>{this.props.taskJob.name}</p></Col>
             <Col><p>{this.props.taskJob.status}</p></Col>
             <Col><p>{this.props.taskJob.timeExecution}</p></Col>
