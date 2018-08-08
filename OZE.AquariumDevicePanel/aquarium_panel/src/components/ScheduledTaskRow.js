@@ -5,12 +5,16 @@ import HttpClient from "../communication/HttpClient";
 
 export default class ScheduledTaskRow extends React.Component {
 
+    restartService = (response) => {
+        console.log("Service has been restarted");
+    }
+
     remove = () => {
         HttpClient.get("scheduledTask/remove?taskId=".concat(this.props.taskJob.id), this.props.updateTasks)
     }
 
     run = () => {
-        
+        HttpClient.get("scheduledTask/run", this.restartService)
     }
 
     render() {
