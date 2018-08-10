@@ -14,7 +14,7 @@ export default class ScheduledTasks extends React.Component {
         };
     }
 
-    toggle = () => {
+    toggleWithFill = (taskJob) => {
         this.setState({
             modal: !this.state.modal
         });
@@ -73,7 +73,7 @@ export default class ScheduledTasks extends React.Component {
                 </Row>
                 {this.getScheduledTasks()}
                 <Button color="success" onClick={this.toggle}>Add new scheduled task</Button>
-                <ScheduledTaskModal modal={this.state.modal} toggle={this.toggle} updateTasks={this.updateTasks} />
+                <ScheduledTaskModal modal={this.state.modal} toggle={this.toggleWithFill} updateTasks={this.updateTasks} />
             </Col>
         </Row>
     }

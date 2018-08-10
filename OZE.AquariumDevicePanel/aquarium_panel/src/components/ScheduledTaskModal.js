@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, La
 import HttpClient from '../communication/HttpClient';
 
 export default class ScheduledTaskModal extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -15,23 +15,23 @@ export default class ScheduledTaskModal extends React.Component {
     }
 
     handleChangeExecutionTime = (event) => {
-        this.setState({executionTime: event.target.value})
+        this.setState({ executionTime: event.target.value })
     }
 
     handleChangeStatus = (event) => {
-        this.setState({status: event.target.value})
+        this.setState({ status: event.target.value })
     }
 
-    handleChangeName= (event) => {
-        this.setState({name: event.target.value})
+    handleChangeName = (event) => {
+        this.setState({ name: event.target.value })
     }
 
-    handleChangeUrlAction= (event) => {
-        this.setState({urlAction: event.target.value})
+    handleChangeUrlAction = (event) => {
+        this.setState({ urlAction: event.target.value })
     }
 
     afterSubmit = (response) => {
-        if(response.isValid){
+        if (response.isValid) {
             this.props.toggle();
             this.props.updateTasks(response.content);
         }
@@ -48,6 +48,17 @@ export default class ScheduledTaskModal extends React.Component {
         };
 
         HttpClient.post(url, data, this.afterSubmit);
+    }
+
+    componentDidMount() {
+        if (this.props.taskJob) {
+            this.setState({
+                name: taskJob.name,
+                urlAction: taskJob.urlAction,
+                status: taskJob.status,
+                executionTime: taskjob.executionTime
+            });
+        }
     }
 
     render() {
