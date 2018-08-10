@@ -53,10 +53,10 @@ export default class ScheduledTaskModal extends React.Component {
     componentDidMount() {
         if (this.props.taskJob) {
             this.setState({
-                name: taskJob.name,
-                urlAction: taskJob.urlAction,
-                status: taskJob.status,
-                executionTime: taskjob.executionTime
+                name: this.props.taskJob.name,
+                urlAction: this.props.taskJob.urlAction,
+                status: this.props.taskJob.status,
+                executionTime: this.props.taskjob.executionTime
             });
         }
     }
