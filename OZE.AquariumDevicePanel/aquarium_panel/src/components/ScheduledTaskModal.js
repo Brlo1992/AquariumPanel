@@ -5,7 +5,7 @@ import HttpClient from '../communication/HttpClient';
 export default class ScheduledTaskModal extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             name:"",
             urlAction:"",
@@ -41,25 +41,13 @@ export default class ScheduledTaskModal extends React.Component {
         let url = "scheduledTask/add";
 
         let data = {
-            name: this.props.name,
-            status: this.props.status,
-            executionTime: this.props.execTime,
-            urlAction: this.props.url
+            name: this.state.name,
+            status: this.state.status,
+            executionTime: this.state.execTime,
+            urlAction: this.state.url
         };
 
         HttpClient.post(url, data, this.afterSubmit);
-    }
-
-    editExistingTask = () => {
-        console.log(this.props.taskJob);
-        if (this.props.taskJob) {
-            this.setState({
-                name: this.props.name,
-                urlAction: this.props.url,
-                status: this.props.status,
-                executionTime: this.props.execTime
-            });
-        }
     }
 
     render() {
