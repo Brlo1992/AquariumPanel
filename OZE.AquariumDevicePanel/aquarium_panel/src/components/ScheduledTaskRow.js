@@ -23,7 +23,7 @@ export default class ScheduledTaskRow extends React.Component {
             <Col><p>{this.props.taskJob.status}</p></Col>
             <Col><p>{this.props.taskJob.timeExecution}</p></Col>
             <Col><p>{this.props.taskJob.lastTimeExecution}</p></Col>
-            <Col md="1"><Button onClick={this.props.edit} color="success" block><Fa.FaEdit /></Button></Col>
+            <Col md="1"><Button onClick={() => this.props.edit(this.propstaskJob)} color="success" block><Fa.FaEdit /></Button></Col>
             <Col md="1"><Button onClick={() => this.run()} color="primary" block><Fa.FaBolt /></Button></Col>
             <Col md="1"><Button onClick={() => this.remove()} color="danger" block><Fa.FaTrash /></Button></Col>
         </Row>
