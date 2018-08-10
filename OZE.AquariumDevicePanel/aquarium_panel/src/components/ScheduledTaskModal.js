@@ -5,13 +5,6 @@ import HttpClient from '../communication/HttpClient';
 export default class ScheduledTaskModal extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            name: "",
-            urlAction: "",
-            status: "",
-            executionTime: ""
-        };
     }
 
     handleChangeExecutionTime = (event) => {
@@ -41,10 +34,10 @@ export default class ScheduledTaskModal extends React.Component {
         let url = "scheduledTask/add";
 
         let data = {
-            name: this.state.name,
-            status: this.state.status,
-            executionTime: this.state.executionTime,
-            urlAction: this.state.urlAction
+            name: this.props.name,
+            status: this.props.status,
+            executionTime: this.props.executionTime,
+            urlAction: this.props.urlAction
         };
 
         HttpClient.post(url, data, this.afterSubmit);
@@ -71,22 +64,22 @@ export default class ScheduledTaskModal extends React.Component {
                         <Form>
                             <FormGroup>
                                 <Label>Name</Label>
-                                <Input onChange={this.handleChangeName} type="text" name="name" id="name" value={this.state.name} placeholder="Scheduled task name" />
+                                <Input onChange={this.handleChangeName} type="text" name="name" id="name" value={this.props.taskJob.name} placeholder="Scheduled task name" />
                             </FormGroup>
                             <FormGroup>
                                 <Label>Url action</Label>
-                                <Input onChange={this.handleChangeUrlAction} type="url" name="urlAction" id="urlAction" value={this.state.urlAction} placeholder="Scheduled task url action" />
+                                <Input onChange={this.handleChangeUrlAction} type="url" name="urlAction" id="urlAction" value={this.props.urlAction} placeholder="Scheduled task url action" />
                             </FormGroup>
                             <FormGroup>
                                 <Label>Status</Label>
-                                <Input onChange={this.handleChangeStatus} type="select" name="status" id="status" value={this.state.status} placeholder="Scheduled task status">
+                                <Input onChange={this.handleChangeStatus} type="select" name="status" id="status" value={this.props.status} placeholder="Scheduled task status">
                                     <option>ON</option>
                                     <option>OFF</option>
                                 </Input>
                             </FormGroup>
                             <FormGroup>
                                 <Label>Execution time</Label>
-                                <Input onChange={this.handleChangeExecutionTime} type="time" name="executionTime" id="executionTime" value={this.state.executionTime} placeholder="Scheduled task execution time" />
+                                <Input onChange={this.handleChangeExecutionTime} type="time" name="executionTime" id="executionTime" value={this.props.executionTime} placeholder="Scheduled task execution time" />
                             </FormGroup>
                         </Form>
                     </ModalBody>
