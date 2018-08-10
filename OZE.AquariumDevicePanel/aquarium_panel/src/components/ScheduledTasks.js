@@ -17,7 +17,8 @@ export default class ScheduledTasks extends React.Component {
 
     toggleWithFill = (taskJob) => {
         this.setState({
-            modal: !this.state.modal
+            taskJob: taskJob,
+            modal: !this.state.modal,
         });
     }
 
@@ -34,12 +35,8 @@ export default class ScheduledTasks extends React.Component {
         }
     }
 
-    editExisitingTask = (taskJob) => {
-        this.toggle();
-    }
-
     getScheduledTasks = () => {
-        let scheduledTasks = this.state.scheduledTasks.map(task => <ScheduledTaskRow edit={this.editExisitingTask} taskJob={task} updateTasks={this.validateResponseAndGetTasks}/>)
+        let scheduledTasks = this.state.scheduledTasks.map(task => <ScheduledTaskRow edit={this.toggleWithFill} taskJob={task} updateTasks={this.validateResponseAndGetTasks}/>)
 
         return <Row>
             <Col>
