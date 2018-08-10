@@ -60,7 +60,7 @@ export default class ScheduledTaskModal extends React.Component {
         HttpClient.post(url, data, this.afterSubmit);
     }
 
-    componentDidMount() {
+    componentWillReceiveProps() {
         if (this.props.taskJob) {
             this.setState({
                 name: this.props.taskJob.name,
