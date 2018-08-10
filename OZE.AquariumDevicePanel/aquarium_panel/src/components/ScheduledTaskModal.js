@@ -6,22 +6,12 @@ export default class ScheduledTaskModal extends React.Component {
     constructor(props) {
         super(props);
 
-        if (this.props.taskJob) {
-            this.state = {
-                name: this.props.taskJob.name,
-                urlAction: this.props.taskJob.urlAction,
-                status: this.props.taskJob.status,
-                executionTime: this.props.taskjob.executionTime
-            };
-        }
-        else {
-            this.state = {
-                name: "",
-                urlAction: "",
-                status: "",
-                executionTime: ""
-            };
-        }
+        this.state = {
+            name: "",
+            urlAction: "",
+            status: "",
+            executionTime: ""
+        };
     }
 
     handleChangeExecutionTime = (event) => {
@@ -60,7 +50,8 @@ export default class ScheduledTaskModal extends React.Component {
         HttpClient.post(url, data, this.afterSubmit);
     }
 
-    componentWillReceiveProps() {
+    editExistingTask = () => {
+        console.log(this.props.taskJob);
         if (this.props.taskJob) {
             this.setState({
                 name: this.props.taskJob.name,
@@ -71,65 +62,33 @@ export default class ScheduledTaskModal extends React.Component {
         }
     }
 
-    getForm = () => {
-        if (this.props.taskJob === undefined) {
-            return <Form>
-                <FormGroup>
-                    <Label>Name</Label>
-                    <Input onChange={this.handleChangeName} type="text" name="name" id="name" value={this.state.name} placeholder="Scheduled task name" />
-                </FormGroup>
-                <FormGroup>
-                    <Label>Url action</Label>
-                    <Input onChange={this.handleChangeUrlAction} type="url" name="urlAction" id="urlAction" value={this.state.urlAction} placeholder="Scheduled task url action" />
-                </FormGroup>
-                <FormGroup>
-                    <Label>Status</Label>
-                    <Input onChange={this.handleChangeStatus} type="select" name="status" id="status" value={this.state.status} placeholder="Scheduled task status">
-                        <option>ON</option>
-                        <option>OFF</option>
-                    </Input>
-                </FormGroup>
-                <FormGroup>
-                    <Label>Execution time</Label>
-                    <Input onChange={this.handleChangeExecutionTime} type="time" name="executionTime" id="executionTime" value={this.state.executionTime} placeholder="Scheduled task execution time" />
-                </FormGroup>
-            </Form>
-        }
-        else {
-            console.log(this.props.taskJob)
-            return <Form>
-                <FormGroup>
-                    <Label>Name</Label>
-                    <Input onChange={this.handleChangeName} type="text" name="name" id="name" value={this.props.taskJob.name} placeholder="Scheduled task name" />
-                </FormGroup>
-                <FormGroup>
-                    <Label>Url action</Label>
-                    <Input onChange={this.handleChangeUrlAction} type="url" name="urlAction" id="urlAction" value={this.props.taskJob.urlAction} placeholder="Scheduled task url action" />
-                </FormGroup>
-                <FormGroup>
-                    <Label>Status</Label>
-                    <Input onChange={this.handleChangeStatus} type="select" name="status" id="status" value={this.props.taskJob.status} placeholder="Scheduled task status">
-                        <option>ON</option>
-                        <option>OFF</option>
-                    </Input>
-                </FormGroup>
-                <FormGroup>
-                    <Label>Execution time</Label>
-                    <Input onChange={this.handleChangeExecutionTime} type="time" name="executionTime" id="executionTime" value={this.props.taskJob.executionTime} placeholder="Scheduled task execution time" />
-                </FormGroup>
-            </Form>
-        }
-    }
-
     render() {
         return (
             <div>
-                <Modal isOpen={this.props.modal} toggle={this.props.toggle}>
+                <Modal isOpen={this.props.modal} toggle={() => { this.props.toggle(); this.editExistingTask() }}>
                     <ModalHeader toggle={this.toggle}>New Scheduled Task</ModalHeader>
                     <ModalBody>
-
-                        {this.getForm()}
-
+                        <Form>
+                            <FormGroup>
+                                <Label>Name</Label>
+                                <Input onChange={this.handleChangeName} type="text" name="name" id="name" value={this.state.name} placeholder="Scheduled task name" />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label>Url action</Label>
+                                <Input onChange={this.handleChangeUrlAction} type="url" name="urlAction" id="urlAction" value={this.state.urlAction} placeholder="Scheduled task url action" />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label>Status</Label>
+                                <Input onChange={this.handleChangeStatus} type="select" name="status" id="status" value={this.state.status} placeholder="Scheduled task status">
+                                    <option>ON</option>
+                                    <option>OFF</option>
+                                </Input>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label>Execution time</Label>
+                                <Input onChange={this.handleChangeExecutionTime} type="time" name="executionTime" id="executionTime" value={this.state.executionTime} placeholder="Scheduled task execution time" />
+                            </FormGroup>
+                        </Form>
                     </ModalBody>
                     <ModalFooter>
                         <Button color="success" onClick={this.handleForm}>Add</Button>
