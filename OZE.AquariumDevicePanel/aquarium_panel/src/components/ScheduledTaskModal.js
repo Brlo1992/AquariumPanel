@@ -6,11 +6,21 @@ export default class ScheduledTaskModal extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            name: "",
-            urlAction: "",
-            status: "",
-            executionTime: ""
+        if (this.props.taskJob) {
+            this.state = {
+                name: this.props.taskJob.name,
+                urlAction: this.props.taskJob.urlAction,
+                status: this.props.taskJob.status,
+                executionTime: this.props.taskjob.executionTime
+            };
+        }
+        else {
+            this.state = {
+                name: "",
+                urlAction: "",
+                status: "",
+                executionTime: ""
+            };
         }
     }
 
@@ -64,7 +74,7 @@ export default class ScheduledTaskModal extends React.Component {
     render() {
         return (
             <div>
-                <Modal isOpen={this.props.modal} toggle={() => {this.forceUpdate(); this.props.toggle()}}>
+                <Modal isOpen={this.props.modal} toggle={this.props.toggle}>
                     <ModalHeader toggle={this.toggle}>New Scheduled Task</ModalHeader>
                     <ModalBody>
                         <Form>
