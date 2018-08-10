@@ -5,6 +5,13 @@ import HttpClient from '../communication/HttpClient';
 export default class ScheduledTaskModal extends React.Component {
     constructor(props) {
         super(props);
+        
+        this.state = {
+            name:"",
+            urlAction:"",
+            executionTime: "",
+            status: ""
+        }
     }
 
     handleChangeExecutionTime = (event) => {
