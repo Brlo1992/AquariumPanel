@@ -72,7 +72,14 @@ export default class ScheduledTasks extends React.Component {
                 </Row>
                 {this.getScheduledTasks()}
                 <Button color="success" onClick={this.toggle}>Add new scheduled task</Button>
-                <ScheduledTaskModal modal={this.state.modal} toggle={this.toggle} updateTasks={this.updateTasks} taskJob={this.state.taskJob} />
+                <ScheduledTaskModal 
+                    modal={this.state.modal} 
+                    toggle={this.toggle} 
+                    updateTasks={this.updateTasks} 
+                    name={this.state.taskName}
+                    url={this.state.url}
+                    status={this.state.taskStatus}
+                    execTime={this.state.execTime} />
             </Col>
         </Row>
     }
