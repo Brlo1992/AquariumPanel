@@ -64,7 +64,7 @@ export default class ScheduledTaskModal extends React.Component {
     render() {
         return (
             <div>
-                <Modal isOpen={this.props.modal} toggle={this.props.toggle}>
+                <Modal isOpen={this.props.modal} toggle={() => {this.forceUpdate(); this.props.toggle()}}>
                     <ModalHeader toggle={this.toggle}>New Scheduled Task</ModalHeader>
                     <ModalBody>
                         <Form>
