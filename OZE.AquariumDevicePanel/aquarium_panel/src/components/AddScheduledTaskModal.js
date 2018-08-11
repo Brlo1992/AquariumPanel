@@ -11,7 +11,6 @@ export default class ScheduledTaskModal extends React.Component {
             urlAction: "",
             timeExecution: "",
             status: "",
-            id: ""
         }
     }
 
@@ -31,10 +30,6 @@ export default class ScheduledTaskModal extends React.Component {
         this.setState({ urlAction: event.target.value })
     }
 
-    handleChangeId = (event) => {
-        this.setState({ id: event.target.value })
-    }
-
     afterSubmit = (response) => {
         if (response.isValid) {
             this.props.toggle();
@@ -42,17 +37,10 @@ export default class ScheduledTaskModal extends React.Component {
         }
     }
 
-    getId = () => {
-        if (this.state.id) {
-            return this.state.id;
-        }
-    }
-
     handleForm = () => {
         let url = this.props.url;
 
         let data = {
-            id: this.getId(),
             name: this.state.name,
             status: this.state.status,
             timeExecution: this.state.timeExecution,
@@ -62,15 +50,6 @@ export default class ScheduledTaskModal extends React.Component {
         HttpClient.post(url, data, this.afterSubmit);
     }
 
-    showIdIfExist = () => {
-        if (this.props.id) {
-            return <FormGroup>
-                <Label>Id</Label>
-                <Input onChange={this.handleChangeId} type="text" name="id" id="id" value={this.props.id} placeholder="Edited task id" />
-            </FormGroup>
-        }
-    }
-
     render() {
         return (
             <div>
@@ -78,7 +57,6 @@ export default class ScheduledTaskModal extends React.Component {
                     <ModalHeader toggle={this.props.toggle}>New Scheduled Task</ModalHeader>
                     <ModalBody>
                         <Form>
-                            {this.showIdIfExist()}
                             <FormGroup>
                                 <Label>Name</Label>
                                 <Input onChange={this.handleChangeName} type="text" name="name" id="name" value={this.props.name} placeholder="Scheduled task name" />
