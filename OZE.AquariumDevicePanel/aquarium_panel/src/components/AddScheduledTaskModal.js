@@ -38,7 +38,7 @@ export default class ScheduledTaskModal extends React.Component {
     }
 
     handleForm = () => {
-        let url = this.props.url;
+        let url = "scheduledTask/add";
 
         let data = {
             name: this.state.name,
