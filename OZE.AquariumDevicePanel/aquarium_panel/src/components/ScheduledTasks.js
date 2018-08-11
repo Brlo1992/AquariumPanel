@@ -22,28 +22,21 @@ export default class ScheduledTasks extends React.Component {
         };
     }
 
-    toggle = (task) => {
+    toggleAddModal = (task) => {
         this.setState({
-            modal: !this.state.modal,
+            addModal: !this.state.addModal,
         });
-        if (task) {
-            this.setState({
-                modal: !this.state.modal,
-                id: task.id,
-                name: task.name,
-                urlAction: task.urlAction,
-                status: task.status,
-                timeExecution: task.timeExecution,
-                isEdit: true
-            });
-        }
     }
 
-    getUrl = () => {
-        if(this.state.isEdit)
-            return "scheduledTask/update";
-        else
-            return "scheduledTask/add";
+    toggleUpdateModal = (task) => {
+        this.setState({
+            modal: !this.state.modal,
+            id: task.id,
+            name: task.name,
+            urlAction: task.urlAction,
+            status: task.status,
+            timeExecution: task.timeExecution,
+        });
     }
 
     updateTasks = (tasks) => {
@@ -96,16 +89,16 @@ export default class ScheduledTasks extends React.Component {
                 {this.getScheduledTasks()}
                 <Button color="success" onClick={this.toggle}>Add new scheduled task</Button>
                 <AddScheduledTaskModal
-                    modal={this.state.modal}
-                    toggle={this.toggle}/>
-                <UpdateScheduledTaskModal 
+                    modal={this.state.addModal}
+                    toggle={this.ttoggleAddModal} />
+                <UpdateScheduledTaskModal
+                    modal={this.state.updateModal}
+                    toggle={this.toggleUpdateModal}
                     id={this.state.id}
                     name={this.state.name}
                     urlAction={this.state.urlAction}
                     status={this.state.status}
-                    timeExecution={this.state.timeExecution}
-                    url={this.getUrl}
-                />
+                    timeExecution={this.state.timeExecution} />
             </Col>
         </Row>
     }
