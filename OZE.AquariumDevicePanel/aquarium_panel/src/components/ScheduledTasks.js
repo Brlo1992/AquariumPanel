@@ -52,7 +52,7 @@ export default class ScheduledTasks extends React.Component {
     }
 
     getScheduledTasks = () => {
-        let scheduledTasks = this.state.scheduledTasks.map(task => <ScheduledTaskRow edit={() => this.toggleUpdateModal(task)} taskJob={task} updateTasks={this.validateResponseAndGetTasks} />)
+        let scheduledTasks = this.state.scheduledTasks.map(task => <ScheduledTaskRow  edit={() => this.toggleUpdateModal(task)} taskJob={task} updateTasks={this.validateResponseAndGetTasks} />)
 
         return <Row>
             <Col>
@@ -90,7 +90,8 @@ export default class ScheduledTasks extends React.Component {
                 <Button color="success" onClick={this.toggleAddModal}>Add new scheduled task</Button>
                 <AddScheduledTaskModal
                     modal={this.state.addModal}
-                    toggle={this.toggleAddModal} />
+                    toggle={this.toggleAddModal} 
+                    updateTasks={this.updateTasks}/>
                 <UpdateScheduledTaskModal
                     modal={this.state.updateModal}
                     toggle={this.toggleUpdateModal}
@@ -98,7 +99,8 @@ export default class ScheduledTasks extends React.Component {
                     name={this.state.name}
                     urlAction={this.state.urlAction}
                     status={this.state.status}
-                    timeExecution={this.state.timeExecution} />
+                    timeExecution={this.state.timeExecution} 
+                    updateTasks={this.updateTasks}/>
             </Col>
         </Row>
     }
