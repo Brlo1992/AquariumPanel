@@ -1,8 +1,10 @@
-import React from 'react'
-import { Row, Col, Button } from 'reactstrap';
+import React from '../../../../../../Users/dakr/AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/react'
+import { Row, Col, Button } from '../../../../../../Users/dakr/AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/reactstrap';
 import ScheduledTaskRow from './ScheduledTaskRow';
 import HttpClient from '../communication/HttpClient';
-import ScheduledTaskModal from './ScheduledTaskModal';
+import AddScheduledTaskModal from './AddScheduledTaskModal';
+import UpdateScheduledTaskModal from './UpdateScheduledTaskModal';
+
 
 export default class ScheduledTasks extends React.Component {
     constructor(props) {
@@ -10,20 +12,19 @@ export default class ScheduledTasks extends React.Component {
 
         this.state = {
             scheduledTasks: [],
-            modal: false,
+            addModal: false,
+            updateModal: false,
             id: "",
             name: "",
             urlAction: "",
             status: "",
             timeExecution: "",
-            isEdit: false
         };
     }
 
     toggle = (task) => {
         this.setState({
             modal: !this.state.modal,
-            isEdit: false
         });
         if (task) {
             this.setState({
@@ -94,15 +95,17 @@ export default class ScheduledTasks extends React.Component {
                 </Row>
                 {this.getScheduledTasks()}
                 <Button color="success" onClick={this.toggle}>Add new scheduled task</Button>
-                <ScheduledTaskModal
+                <AddScheduledTaskModal
                     modal={this.state.modal}
-                    toggle={this.toggle}
+                    toggle={this.toggle}/>
+                <UpdateScheduledTaskModal 
                     id={this.state.id}
                     name={this.state.name}
                     urlAction={this.state.urlAction}
                     status={this.state.status}
                     timeExecution={this.state.timeExecution}
-                    url={this.getUrl} />
+                    url={this.getUrl}
+                />
             </Col>
         </Row>
     }
