@@ -39,7 +39,10 @@ export default class ScheduledTasks extends React.Component {
     }
 
     getUrl = () => {
-
+        if(this.state.isEdit)
+            return "scheduledTask/update";
+        else
+            return "scheduledTask/add";
     }
 
     updateTasks = (tasks) => {

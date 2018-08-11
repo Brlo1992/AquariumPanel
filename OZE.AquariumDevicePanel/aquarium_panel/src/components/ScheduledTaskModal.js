@@ -52,7 +52,7 @@ export default class ScheduledTaskModal extends React.Component {
         let url = this.props.url;
 
         let data = {
-            id = this.getId(),
+            id: this.getId(),
             name: this.state.name,
             status: this.state.status,
             timeExecution: this.state.timeExecution,
