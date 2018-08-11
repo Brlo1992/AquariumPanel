@@ -1,5 +1,5 @@
-import React from '../../../../../../Users/dakr/AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/react'
-import { Row, Col, Button } from '../../../../../../Users/dakr/AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/reactstrap';
+import React from 'react'
+import { Row, Col, Button } from 'reactstrap';
 import ScheduledTaskRow from './ScheduledTaskRow';
 import HttpClient from '../communication/HttpClient';
 import AddScheduledTaskModal from './AddScheduledTaskModal';
