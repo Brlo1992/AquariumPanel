@@ -22,7 +22,7 @@ export default class ScheduledTasks extends React.Component {
         };
     }
 
-    toggleAddModal = (task) => {
+    toggleAddModal = () => {
         this.setState({
             addModal: !this.state.addModal,
         });
@@ -30,7 +30,7 @@ export default class ScheduledTasks extends React.Component {
 
     toggleUpdateModal = (task) => {
         this.setState({
-            modal: !this.state.modal,
+            updateModal: !this.state.updateModal,
             id: task.id,
             name: task.name,
             urlAction: task.urlAction,
@@ -52,7 +52,7 @@ export default class ScheduledTasks extends React.Component {
     }
 
     getScheduledTasks = () => {
-        let scheduledTasks = this.state.scheduledTasks.map(task => <ScheduledTaskRow edit={() => this.toggle(task)} taskJob={task} updateTasks={this.validateResponseAndGetTasks} />)
+        let scheduledTasks = this.state.scheduledTasks.map(task => <ScheduledTaskRow edit={() => this.toggleUpdateModal(task)} taskJob={task} updateTasks={this.validateResponseAndGetTasks} />)
 
         return <Row>
             <Col>
@@ -87,10 +87,10 @@ export default class ScheduledTasks extends React.Component {
                     <Col md="3"><h4>Possible actions</h4></Col>
                 </Row>
                 {this.getScheduledTasks()}
-                <Button color="success" onClick={this.toggle}>Add new scheduled task</Button>
+                <Button color="success" onClick={this.toggleAddModal}>Add new scheduled task</Button>
                 <AddScheduledTaskModal
                     modal={this.state.addModal}
-                    toggle={this.ttoggleAddModal} />
+                    toggle={this.toggleAddModal} />
                 <UpdateScheduledTaskModal
                     modal={this.state.updateModal}
                     toggle={this.toggleUpdateModal}

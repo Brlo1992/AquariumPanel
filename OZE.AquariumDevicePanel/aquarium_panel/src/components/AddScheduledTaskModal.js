@@ -43,8 +43,8 @@ export default class ScheduledTaskModal extends React.Component {
         let data = {
             name: this.state.name,
             status: this.state.status,
-            timeExecution: this.state.timeExecution,
-            urlAction: this.state.url
+            timeExecution: new Date(this.state.timeExecution),
+            urlAction: this.state.urlAction
         };
 
         HttpClient.post(url, data, this.afterSubmit);
