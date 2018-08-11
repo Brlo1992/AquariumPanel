@@ -11,25 +11,20 @@ export default class ScheduledTasks extends React.Component {
         this.state = {
             scheduledTasks: [],
             modal: false,
+            id: "",
             name: "",
-            url: "",
+            urlAction: "",
             status: "",
-            executionTime: ""
+            timeExecution: ""
         };
     }
 
     toggle = (task) => {
-        if (task) {
-            this.setState({
-                name: task.name,
-                urlAction: task.urlAction,
-                status: task.status,
-                executionTime: task.executionTime
-            });
-        }
         this.setState({
             modal: !this.state.modal
         });
+
+        return task;
     }
 
     updateTasks = (tasks) => {
@@ -88,7 +83,7 @@ export default class ScheduledTasks extends React.Component {
                     name={this.state.taskName}
                     url={this.state.url}
                     status={this.state.taskStatus}
-                    execTime={this.state.execTime} />
+                    timeExecution={this.state.timeExecution} />
             </Col>
         </Row>
     }

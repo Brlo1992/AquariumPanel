@@ -9,13 +9,13 @@ export default class ScheduledTaskModal extends React.Component {
         this.state = {
             name:"",
             urlAction:"",
-            executionTime: "",
+            timeExecution: "",
             status: ""
         }
     }
 
     handleChangeExecutionTime = (event) => {
-        this.setState({ executionTime: event.target.value })
+        this.setState({ timeExecution: event.target.value })
     }
 
     handleChangeStatus = (event) => {
@@ -43,38 +43,46 @@ export default class ScheduledTaskModal extends React.Component {
         let data = {
             name: this.state.name,
             status: this.state.status,
-            executionTime: this.state.execTime,
+            timeExecution: this.state.timeExecution,
             urlAction: this.state.url
         };
 
         HttpClient.post(url, data, this.afterSubmit);
     }
 
+    toggle = () => {
+        let task = this.props.toggle() 
+
+        this.setState({
+            name: task.name
+        });
+    }
+
     render() {
         return (
             <div>
-                <Modal isOpen={this.props.modal} toggle={this.props.toggle}>
+                <Modal isOpen={this.props.modal} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle}>New Scheduled Task</ModalHeader>
                     <ModalBody>
                         <Form>
                             <FormGroup>
                                 <Label>Name</Label>
-                                <Input onChange={this.handleChangeName} type="text" name="name" id="name" value={this.props.name} placeholder="Scheduled task name" />
+                                <Input onChange={this.handleChangeName} type="text" name="name" id="name" value={this.state.name} placeholder="Scheduled task name" />
                             </FormGroup>
                             <FormGroup>
                                 <Label>Url action</Label>
-                                <Input onChange={this.handleChangeUrlAction} type="url" name="urlAction" id="urlAction" value={this.props.url} placeholder="Scheduled task url action" />
+                                <Input onChange={this.handleChangeUrlAction} type="url" name="urlAction" id="urlAction" value={this.state.url} placeholder="Scheduled task url action" />
                             </FormGroup>
                             <FormGroup>
                                 <Label>Status</Label>
-                                <Input onChange={this.handleChangeStatus} type="select" name="status" id="status" value={this.props.status} placeholder="Scheduled task status">
+                                <Input onChange={this.handleChangeStatus} type="select" name="status" id="status" value={this.state.status} placeholder="Scheduled task status">
                                     <option>ON</option>
                                     <option>OFF</option>
                                 </Input>
                             </FormGroup>
                             <FormGroup>
                                 <Label>Execution time</Label>
-                                <Input onChange={this.handleChangeExecutionTime} type="time" name="executionTime" id="executionTime" value={this.props.execTime} placeholder="Scheduled task execution time" />
+                                <Input onChange={this.handleChangeExecutionTime} type="time" name="executionTime" id="executionTime" value={this.state.timeExecution} placeholder="Scheduled task execution time" />
                             </FormGroup>
                         </Form>
                     </ModalBody>
