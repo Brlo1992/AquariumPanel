@@ -10,7 +10,8 @@ export default class ScheduledTaskModal extends React.Component {
             name: "",
             urlAction: "",
             timeExecution: "",
-            status: ""
+            status: "",
+            id: ""
         }
     }
 
@@ -28,6 +29,10 @@ export default class ScheduledTaskModal extends React.Component {
 
     handleChangeUrlAction = (event) => {
         this.setState({ urlAction: event.target.value })
+    }
+
+    handleChangeId = (event) => {
+        this.setState({ id: event.target.value })
     }
 
     afterSubmit = (response) => {
@@ -50,6 +55,15 @@ export default class ScheduledTaskModal extends React.Component {
         HttpClient.post(url, data, this.afterSubmit);
     }
 
+    showIdIfExist = () => {
+        if (this.props.id) {
+            return <FormGroup>
+                <Label>Id</Label>
+                <Input onChange={this.handleChangeId} type="text" name="id" id="id" value={this.props.id} placeholder="Edited task id" />
+            </FormGroup>
+        }
+    }
+
     render() {
         return (
             <div>
@@ -57,6 +71,7 @@ export default class ScheduledTaskModal extends React.Component {
                     <ModalHeader toggle={this.props.toggle}>New Scheduled Task</ModalHeader>
                     <ModalBody>
                         <Form>
+                            {this.showIdIfExist()}
                             <FormGroup>
                                 <Label>Name</Label>
                                 <Input onChange={this.handleChangeName} type="text" name="name" id="name" value={this.props.name} placeholder="Scheduled task name" />
