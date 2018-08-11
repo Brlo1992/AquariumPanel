@@ -7,8 +7,8 @@ export default class ScheduledTaskModal extends React.Component {
         super(props);
 
         this.state = {
-            name:"",
-            urlAction:"",
+            name: "",
+            urlAction: "",
             timeExecution: "",
             status: ""
         }
@@ -50,19 +50,11 @@ export default class ScheduledTaskModal extends React.Component {
         HttpClient.post(url, data, this.afterSubmit);
     }
 
-    toggle = () => {
-        let task = this.props.toggle() 
-
-        this.setState({
-            name: task.name
-        });
-    }
-
     render() {
         return (
             <div>
-                <Modal isOpen={this.props.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>New Scheduled Task</ModalHeader>
+                <Modal isOpen={this.props.modal} toggle={this.props.toggle}>
+                    <ModalHeader toggle={this.props.toggle}>New Scheduled Task</ModalHeader>
                     <ModalBody>
                         <Form>
                             <FormGroup>
@@ -71,7 +63,7 @@ export default class ScheduledTaskModal extends React.Component {
                             </FormGroup>
                             <FormGroup>
                                 <Label>Url action</Label>
-                                <Input onChange={this.handleChangeUrlAction} type="url" name="urlAction" id="urlAction" value={this.state.url} placeholder="Scheduled task url action" />
+                                <Input onChange={this.handleChangeUrlAction} type="url" name="urlAction" id="urlAction" value={this.state.urlAction} placeholder="Scheduled task url action" />
                             </FormGroup>
                             <FormGroup>
                                 <Label>Status</Label>
